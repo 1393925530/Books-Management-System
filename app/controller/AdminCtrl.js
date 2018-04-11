@@ -10,14 +10,14 @@ exports.addType = function(req, res) {
     var obj = {
         typeName: req.body.typeName
     };
-    console.log("需要添加到数据库的类别名为：" + req.body.typeName);
+    console.log("需要添加到数据库的任务(资料)为：" + req.body.typeName);
 
     // 调用DAO层接口
     BookTypeDao.insert(obj, function() {
-        console.warn("添加书籍类别成功");
+        console.warn("添加任务(资料)成功");
         //返回给客户端200成功插入反馈
         res.status(200).json({
-            success: '添加书籍类别成功'
+            success: '添加任务(资料)成功'
         });
     });
 };
@@ -34,9 +34,9 @@ exports.updateType = function(req, res) {
     var obj = req.body;
     BookTypeDao.modify(obj, function() {
         res.status(200).json({
-            success: '修改书籍类别成功'
+            success: '修改任务(资料)成功'
         });
-        console.log("修改书籍类别成功");
+        console.log("修改任务(资料)成功");
     });
 };
 
@@ -46,9 +46,9 @@ exports.deleteType = function(req, res) {
     var id = req.params.id;
     BookTypeDao.deleteOne(id, function() {
         res.status(200).json({
-            success: '删除书籍类别成功'
+            success: '删除任务(资料)成功'
         });;
-        console.log("删除书籍类别成功");
+        console.log("删除任务(资料)成功");
     });
 };
 
@@ -71,10 +71,10 @@ exports.addBook = function(req, res) {
     // console.log(obj);
     // 调用DAO层接口
     BookDao.insert(obj, function() {
-        console.warn("添加书籍类别成功");
+        console.warn("添加任务(资料)成功");
         //返回给客户端200成功插入反馈
         res.status(200).json({
-            success: '添加书籍类别成功'
+            success: '添加任务(资料)成功'
         });
     });
 };
@@ -92,9 +92,9 @@ exports.updateBook = function(req, res) {
     console.log(obj);
     BookDao.modify(obj, function() {
         res.status(200).json({
-            success: '修改书籍类别成功'
+            success: '修改任务(资料)成功'
         });
-        console.log("修改书籍类别成功");
+        console.log("修改任务(资料)成功");
     });
 };
 
@@ -104,9 +104,9 @@ exports.deleteBook = function(req, res) {
     var id = req.params.id;
     BookDao.deleteOne(id, function() {
         res.status(200).json({
-            success: '删除书籍类别成功'
+            success: '删除任务(资料)成功'
         });;
-        console.log("删除书籍成功");
+        console.log("删除任务(资料)成功");
     });
 };
 

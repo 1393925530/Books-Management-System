@@ -14,16 +14,16 @@ adminApp.controller('navCtrl', ['$scope', '$http', '$location',
 
         //设定功能名称
         var navGroups = [{
-            navName: '添加类别', //显示的名称
+            navName: '添加任务(资料)', //显示的名称
             urlName: 'addType' //对应URL的名称
         }, {
-            navName: '管理全部类别',
+                navName: '管理全部任务(资料)',
             urlName: 'seeAllType'
         }, {
-            navName: '添加书籍',
+                navName: '添加任务(资料)',
             urlName: 'addBook'
         }, {
-            navName: '管理全部书籍',
+                navName: '管理全部任务(资料)',
             urlName: 'seeAllBook'
         }, {
             navName: '添加管理员',
@@ -60,7 +60,7 @@ adminApp.controller('addBookType', ['$scope', '$http',
                         alert(response.data.success);
                     }
                 }, function errorCallback(response) {
-                    alert("添加书籍类别失败");
+                    alert("添加任务(资料)失败");
                 });
             }
         }
@@ -114,7 +114,7 @@ adminApp.controller('seeAllType', ['$scope', '$http',
                             $scope.setPagingData(response.data, page, pageSize);
                         }
                     }, function errorCallback(response) {
-                        alert("获取书籍类别数据失败");
+                        alert("获取任务(资料)失败");
                     });
                 }
             }, 100);
@@ -260,7 +260,7 @@ adminApp.controller('addBook', ['$scope', '$http',
                         alert(response.data.success);
                     }
                 }, function errorCallback(response) {
-                    alert("添加书籍类别失败");
+                    alert("添加任务(资料)失败");
                 });
             }
         }
@@ -315,7 +315,7 @@ adminApp.controller('seeAllBook', ['$scope', '$http',
                             $scope.setPagingData(response.data, page, pageSize);
                         }
                     }, function errorCallback(response) {
-                        alert("获取书籍数据失败");
+                        alert("获取任务(资料)失败");
                     });
                 }
             }, 100);
@@ -356,13 +356,13 @@ adminApp.controller('seeAllBook', ['$scope', '$http',
                 enableCellEdit: false
             }, {
                 field: 'Book_name',
-                displayName: '书名',
+                displayName: '书名/任务',
                 pinnable: true,
                 sortable: true,
                 enableCellEdit: true
             }, {
                 field: 'Writer',
-                displayName: '作者',
+                displayName: '作者/负责人',
                 pinnable: true,
                 sortable: true,
                 enableCellEdit: true,
@@ -380,7 +380,7 @@ adminApp.controller('seeAllBook', ['$scope', '$http',
                 visible: false //隐藏列，方便后面修改数据
             }, {
                 field: 'Price',
-                displayName: '价格',
+                displayName: '价格/成本',
                 enableCellEdit: true,
                 width: '5%'
             }, {
@@ -390,7 +390,7 @@ adminApp.controller('seeAllBook', ['$scope', '$http',
                 width: '10%'
             }, {
                 field: 'Pub_date',
-                displayName: '出版日期',
+                displayName: '出版日期/消耗的时长',
                 enableCellEdit: true,
                 cellFilter: 'date:\'yyyy-MM-dd\'', //过滤器，格式化日期
                 width: '10%'

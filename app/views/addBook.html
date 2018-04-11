@@ -1,28 +1,28 @@
-<h1 class="page-header">添加书籍</h1>
+<h1 class="page-header">添加任务/资料</h1>
 <div class="row">
     <form class="form-horizontal" role="form" name="addBookForm" ng-submit="addBook(addBookForm.$valid,$event)">
         <div class="form-group">
             <label class="col-md-2 control-label">
-                书名：
+              任务/资料：
             </label>
             <div class="col-md-5">
-                <input type="text" class="form-control" placeholder="请输入书名……" ng-model="bookName" id="bookName" name="bookName" required autofocus="">
+                <input type="text" class="form-control" placeholder="请输入任务/资料……" ng-model="bookName" id="bookName" name="bookName" required autofocus="">
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-2 control-label">
-                作者：
+                作者/负责人：
             </label>
             <div class="col-md-5">
-                <input type="text" class="form-control" placeholder="请输入作者……" ng-model="writer" id="writer" name="writer">
+                <input type="text" class="form-control" placeholder="请输入作者/负责人……" ng-model="writer" id="writer" name="writer">
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-2 control-label">
-                价格：
+                价格/成本：
             </label>
             <div class="col-md-5">
-                <input type="text" class="form-control" placeholder="请输入价格……" ng-model="price" id="price" name="price" required autofocus="">
+                <input type="text" class="form-control" placeholder="请输入价格/成本……" ng-model="price" id="price" name="price" required autofocus="">
             </div>
         </div>
         <div class="form-group">
@@ -37,18 +37,18 @@
         </div>
         <div class="form-group">
             <label class="col-md-2 control-label">
-                出版社：
+                出版社/--：
             </label>
             <div class="col-md-5">
-                <input type="text" class="form-control" placeholder="请输入出版社……" ng-model="pubCompany" id="pubCompany" name="pubCompany">
+                <input type="text" class="form-control" placeholder="请输入出版社/--……" ng-model="pubCompany" id="pubCompany" name="pubCompany">
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-2 control-label">
-                出版日期：
+                出版日期/需要的时长：
             </label>
             <div class="col-md-5">
-                <input type="text" class="form-control" placeholder="请输入出版日期……" ng-model="pubDate" id="pubDate" name="pubDate">
+                <input type="text" class="form-control" placeholder="请输入出版日期/需要的时长……" ng-model="pubDate" id="pubDate" name="pubDate">
             </div>
         </div>
         <div class="form-group">
