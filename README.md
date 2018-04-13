@@ -3,7 +3,8 @@ TQ-management-system
 
 - *AngularJS用到了*:ng-grid,ui-router,ng-file-upload等模块
 - *ExpressJS用到了*:body-parser,cookie-parser,cookie-session,ejs,express-session,MD5加密等模块
-- from https://github.com/ManfredHu
+- from https://github.com/ManfredHu    
+2018-04-13增加添加任务功能
 
 
 ## 运行
@@ -52,7 +53,7 @@ app
 ├──views 项目的模板，或者说叫视图部分，代码基本在前端controller里面
 ├──app.js 服务器启动文件
 ├──routes.js 后台路由配置文件
-```
+```     
 
 ## 一些问题
 express-session模块中[官方文档](https://github.com/expressjs/session?_ga=1.2960176.1066105876.1451139756)是
