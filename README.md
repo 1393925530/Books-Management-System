@@ -52,7 +52,8 @@ app
 ├──views 项目的模板，或者说叫视图部分，代码基本在前端controller里面
 ├──app.js 服务器启动文件
 ├──routes.js 后台路由配置文件
-```
+```     
+2018-04-13增加添加任务功能
 
 ## 一些问题
 express-session模块中[官方文档](https://github.com/expressjs/session?_ga=1.2960176.1066105876.1451139756)是
