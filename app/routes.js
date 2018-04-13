@@ -106,6 +106,22 @@ module.exports = function(app) {
         AdminCtrl.addBook(req, res);
     });
 
+    //添加任务
+    app.post('/addPlan', function (req, res) {
+        AdminCtrl.addPlan(req, res);
+    });
+
+    app.get('/seeAllPlan', function (req, res) {
+        AdminCtrl.seeAllPlan(req, res);
+    });
+    //接受类别数据的修改
+    app.put('/seeAllPlan/:id', function (req, res) {
+        AdminCtrl.updatePlan(req, res);
+    });
+    app.delete('/seeAllPlan/:id', function (req, res) {
+        AdminCtrl.deletePlan(req, res);
+    });
+
     //获取全部类别数据
     app.get('/seeAllBook', function(req, res) {
         AdminCtrl.seeAllBook(req, res);

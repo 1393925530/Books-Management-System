@@ -54,11 +54,21 @@ adminApp.config(function($stateProvider, $urlRouterProvider) { //设置路由
             templateUrl: '/tpl/addBook.html',
             controller: 'addBook'
         })
+        .state('admin.addPlan', {
+            url: '/addPlan',
+            templateUrl: '/tpl/addPlan.html',
+            controller: 'addPlan'
+        })
         //添加书籍
         .state('admin.seeAllBook', {
             url: '/seeAllBook',
             templateUrl: '/tpl/seeAllBook.html',
             controller: 'seeAllBook'
+        })
+        .state('admin.seeAllPlan', {
+            url: '/seeAllPlan',
+            templateUrl: '/tpl/seeAllPlan.html',
+            controller: 'seeAllPlan'
         })
         //添加管理员
         .state('admin.addAdmin',{

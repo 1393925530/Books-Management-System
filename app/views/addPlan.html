@@ -1,0 +1,54 @@
+<h1 class="page-header">添加任务</h1>
+<div class="row">
+    <form class="form-horizontal" role="form" name="addPlanForm" ng-submit="addPlan(addPlanForm.$valid,$event)">
+        <div class="form-group">
+            <label class="col-md-2 control-label">
+                任务：
+            </label>
+            <div class="col-md-5">
+                <input type="text" class="form-control" placeholder="请输入任务……" ng-model="planname" id="planname" name="planname" required
+                    autofocus="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">
+                负责人：
+            </label>
+            <div class="col-md-5">
+                <input type="text" class="form-control" placeholder="请输入负责人……" ng-model="people" id="people" name="people">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">
+                成本：
+            </label>
+            <div class="col-md-5">
+                <input type="text" class="form-control" placeholder="请输入成本……" ng-model="costs" id="costs" name="costs" required autofocus="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">
+                类别：
+            </label>
+            <div class="col-md-5">
+                <select id="basic" class="selectpicker show-tick form-control" ng-model="typeId">
+                    <option ng-repeat="type in types" value="{{type.Sort_id}}">{{type.Sort_name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">
+                大概需要的时间：
+            </label>
+            <div class="col-md-5">
+                <input type="text" class="form-control" placeholder="请输入需要的时间" ng-model="plantime" id="plantime" name="plantime">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-5">
+                <input class="btn btn-primary" type="submit" value="添加">
+                <input class="btn btn-default" type="reset">
+            </div>
+        </div>
+    </form>
+</div>

@@ -25,6 +25,14 @@ exports.bookType = {
      * Sort_name    varcahr(20)
      */
 };
+exports.plan = {
+    id: 0,
+    planname:'',
+    people:'',
+    typeId: 0, //外键
+    costs:'',
+    plantime:Date,
+}
 
 exports.book = {
     id: 0,

@@ -1,5 +1,6 @@
 var config = require('./config.js'),
     BookTypeDao = require('../dao/BookTypeDao.js'),
+    PlanDao = require('../dao/PlanDao.js'),
     BookDao = require('../dao/BookDao.js'),
     UserDao = require("../dao/UserDao.js"),
     md5 = require('md5');
@@ -10,14 +11,14 @@ exports.addType = function(req, res) {
     var obj = {
         typeName: req.body.typeName
     };
-    console.log("需要添加到数据库的任务(资料)为：" + req.body.typeName);
+    console.log("需要添加到数据库的类别为：" + req.body.typeName);
 
     // 调用DAO层接口
     BookTypeDao.insert(obj, function() {
-        console.warn("添加任务(资料)成功");
+        console.warn("添加类别成功");
         //返回给客户端200成功插入反馈
         res.status(200).json({
-            success: '添加任务(资料)成功'
+            success: '添加类别成功'
         });
     });
 };
@@ -34,9 +35,9 @@ exports.updateType = function(req, res) {
     var obj = req.body;
     BookTypeDao.modify(obj, function() {
         res.status(200).json({
-            success: '修改任务(资料)成功'
+            success: '修改类别成功'
         });
-        console.log("修改任务(资料)成功");
+        console.log("修改类别成功");
     });
 };
 
@@ -46,9 +47,9 @@ exports.deleteType = function(req, res) {
     var id = req.params.id;
     BookTypeDao.deleteOne(id, function() {
         res.status(200).json({
-            success: '删除任务(资料)成功'
+            success: '删除类别成功'
         });;
-        console.log("删除任务(资料)成功");
+        console.log("删除类别成功");
     });
 };
 
@@ -71,44 +72,94 @@ exports.addBook = function(req, res) {
     // console.log(obj);
     // 调用DAO层接口
     BookDao.insert(obj, function() {
-        console.warn("添加任务(资料)成功");
+        console.warn("添加资料成功");
         //返回给客户端200成功插入反馈
         res.status(200).json({
-            success: '添加任务(资料)成功'
+            success: '添加资料成功'
         });
     });
 };
-
 //查看全部书籍
-exports.seeAllBook = function(req, res) {
-    BookDao.selectAll(function(rows) {
+exports.seeAllBook = function (req, res) {
+    BookDao.selectAll(function (rows) {
         res.status(200).json(rows);
     });
 };
 
 //修改书籍
-exports.updateBook = function(req, res) {
+exports.updateBook = function (req, res) {
     var obj = req.body;
     console.log(obj);
-    BookDao.modify(obj, function() {
+    BookDao.modify(obj, function () {
         res.status(200).json({
-            success: '修改任务(资料)成功'
+            success: '修改资料成功'
         });
-        console.log("修改任务(资料)成功");
+        console.log("修改资料成功");
     });
 };
 
 //删除书籍
-exports.deleteBook = function(req, res) {
+exports.deleteBook = function (req, res) {
     //接受url传递的删除类别的id值
     var id = req.params.id;
-    BookDao.deleteOne(id, function() {
+    BookDao.deleteOne(id, function () {
         res.status(200).json({
-            success: '删除任务(资料)成功'
+            success: '删除资料成功'
         });;
-        console.log("删除任务(资料)成功");
+        console.log("删除资料成功");
     });
 };
+
+exports.addPlan = function (req, res) {
+    //封装obj
+    var obj = {
+        planname: req.body.planname,
+        people: req.body.people,
+        typeId: req.body.typeId, //连接类别的外键
+        costs: req.body.costs,
+        plantime: req.body.plantime,
+    };
+    // console.log(obj);
+    // 调用DAO层接口
+        PlanDao.insert(obj, function () {
+        console.warn("添加任务成功");
+        //返回给客户端200成功插入反馈
+        res.status(200).json({
+            success: '添加任务成功'
+        });
+    });
+};
+exports.seeAllPlan = function (req, res) {
+    PlanDao.selectAll(function (rows) {
+        res.status(200).json(rows);
+    });
+};
+
+//修改书籍
+exports.updatePlan = function (req, res) {
+    var obj = req.body;
+    console.log(obj);
+    PlanDao.modify(obj, function () {
+        res.status(200).json({
+            success: '修改任务成功'
+        });
+        console.log("修改任务成功");
+    });
+};
+
+//删除书籍
+exports.deletePlan = function (req, res) {
+    //接受url传递的删除类别的id值
+    var id = req.params.id;
+    PlanDao.deleteOne(id, function () {
+        res.status(200).json({
+            success: '删除任务成功'
+        });;
+        console.log("删除任务成功");
+    });
+};
+
+
 
 //添加管理员
 exports.addAdmin = function(req, res) {

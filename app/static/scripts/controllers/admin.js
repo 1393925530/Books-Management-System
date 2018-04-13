@@ -14,16 +14,24 @@ adminApp.controller('navCtrl', ['$scope', '$http', '$location',
 
         //设定功能名称
         var navGroups = [{
-            navName: '添加任务(资料)', //显示的名称
+            navName: '添加类别', //显示的名称
             urlName: 'addType' //对应URL的名称
-        }, {
-                navName: '管理全部任务(资料)',
-            urlName: 'seeAllType'
-        }, {
-                navName: '添加任务(资料)',
+        },  
+            {
+                navName: '添加任务',
+                urlName: 'addPlan'
+            },{
+                navName: '添加资料',
             urlName: 'addBook'
-        }, {
-                navName: '管理全部任务(资料)',
+            }, {
+                navName: '管理全部类别',
+                urlName: 'seeAllType'
+            },
+            {
+                navName: '管理全部任务',
+                urlName: 'seeAllPlan'
+            }, {
+                navName: '管理全部资料',
             urlName: 'seeAllBook'
         }, {
             navName: '添加管理员',
@@ -60,7 +68,7 @@ adminApp.controller('addBookType', ['$scope', '$http',
                         alert(response.data.success);
                     }
                 }, function errorCallback(response) {
-                    alert("添加任务(资料)失败");
+                    alert("添加类别失败");
                 });
             }
         }
@@ -114,7 +122,7 @@ adminApp.controller('seeAllType', ['$scope', '$http',
                             $scope.setPagingData(response.data, page, pageSize);
                         }
                     }, function errorCallback(response) {
-                        alert("获取任务(资料)失败");
+                        alert("获取资料失败");
                     });
                 }
             }, 100);
@@ -260,7 +268,51 @@ adminApp.controller('addBook', ['$scope', '$http',
                         alert(response.data.success);
                     }
                 }, function errorCallback(response) {
-                    alert("添加任务(资料)失败");
+                    alert("添加资料失败");
+                });
+            }
+        }
+    }
+]);
+adminApp.controller('addPlan', ['$scope', '$http',
+    function ($scope, $http) {
+        //对类别进行加载
+        $http.get('/seeAllPlan')
+            .success(function (largeLoad) {
+                $scope.types = largeLoad;
+            });
+
+        //提交的时候
+        $scope.addPlan = function (valid, event) {
+            $scope.formData = {
+                planname: $scope.planname,
+                people: $scope.people,
+                typeId: $scope.typeId, //类别
+                costs: $scope.costs,
+                plantime: $scope.plantime,
+            };
+
+            //检验通过
+            if (valid) {
+                //发送数据到后台
+                $http({
+                    method: 'POST',
+                    url: '/addPlan',
+                    headers: {
+                        //表单的报头格式
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    data: $.param($scope.formData) //发送user数据到后台，这里用到了jQ
+                }).then(function successCallback(response) {
+                    if (response.status === 200) {
+                        //添加成功，清空输入项
+                        for (var p in $scope.formData) {
+                            $scope[p] = '';
+                        }
+                        alert(response.data.success);
+                    }
+                }, function errorCallback(response) {
+                    alert("添加任务失败");
                 });
             }
         }
@@ -315,7 +367,7 @@ adminApp.controller('seeAllBook', ['$scope', '$http',
                             $scope.setPagingData(response.data, page, pageSize);
                         }
                     }, function errorCallback(response) {
-                        alert("获取任务(资料)失败");
+                        alert("获取资料失败");
                     });
                 }
             }, 100);
@@ -356,13 +408,13 @@ adminApp.controller('seeAllBook', ['$scope', '$http',
                 enableCellEdit: false
             }, {
                 field: 'Book_name',
-                displayName: '书名/任务',
+                displayName: '书名',
                 pinnable: true,
                 sortable: true,
                 enableCellEdit: true
             }, {
                 field: 'Writer',
-                displayName: '作者/负责人',
+                displayName: '作者',
                 pinnable: true,
                 sortable: true,
                 enableCellEdit: true,
@@ -390,7 +442,7 @@ adminApp.controller('seeAllBook', ['$scope', '$http',
                 width: '10%'
             }, {
                 field: 'Pub_date',
-                displayName: '出版日期/消耗的时长',
+                displayName: '出版日期',
                 enableCellEdit: true,
                 cellFilter: 'date:\'yyyy-MM-dd\'', //过滤器，格式化日期
                 width: '10%'
@@ -477,6 +529,189 @@ adminApp.controller('seeAllBook', ['$scope', '$http',
     }
 ]);
 
+adminApp.controller('seeAllPlan', ['$scope', '$http',
+    function ($scope, $http) {
+        $scope.filterOptions = {
+            filterText: "",
+            useExternalFilter: true
+        };
+        $scope.totalServerItems = 0;
+        $scope.pagingOptions = {
+            pageSizes: [5, 10, 50],
+            pageSize: 10,
+            currentPage: 1
+        };
+
+        //设置页面数据
+        $scope.setPagingData = function (data, page, pageSize) {
+            var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
+            $scope.plan = pagedData;
+            $scope.totalServerItems = data.length;
+            if (!$scope.$$phase) {
+                $scope.$apply();
+            }
+        };
+
+        //异步获取页面数据
+        $scope.getPagedDataAsync = function (pageSize, page, searchText) {
+            setTimeout(function () {
+                var data;
+                if (searchText) {
+                    var ft = searchText.toLowerCase();
+                    //获取模拟的书籍json文件
+                    $http.get('/seeAllPlan')
+                        .success(function (largeLoad) {
+                            data = largeLoad.filter(function (item) {
+                                return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
+                            });
+                            $scope.setPagingData(data, page, pageSize);
+                        });
+                } else {
+                    $http({
+                        method: 'GET',
+                        url: '/seeAllPlan'
+                    }).then(function successCallback(response) {
+                        console.log(response);
+                        if (response.status === 200) {
+                            $scope.setPagingData(response.data, page, pageSize);
+                        }
+                    }, function errorCallback(response) {
+                        alert("获取任务失败");
+                    });
+                }
+            }, 100);
+        };
+
+        $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
+
+        //监听排序等
+        $scope.$watch('pagingOptions', function (newVal, oldVal) {
+            if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
+                $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+            }
+        }, true);
+        $scope.$watch('filterOptions', function (newVal, oldVal) {
+            if (newVal !== oldVal) {
+                $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+            }
+        }, true);
+
+        $scope.gridOptions = {
+            data: 'plan',
+            rowTemplate: '<div style="height: 100%"><div ng-style="{ \'cursor\': row.cursor }" ng-repeat="col in renderedColumns" ng-class="col.colIndex()" class="ngCell ">' +
+                '<div class="ngVerticalBar" ng-style="{height: rowHeight}" ng-class="{ ngVerticalBarVisible: !$last }"> </div>' +
+                '<div ng-cell></div>' +
+                '</div></div>',
+            multiSelect: false,
+            enableCellSelection: true,
+            enableRowSelection: false,
+            enableCellEdit: true, //双击修改，单击选中
+            enablePinning: true, //列固定
+            enableColumnResize: true, //可以更改列宽度
+            columnDefs: [{
+                field: 'plan_num',
+                displayName: 'id',
+                width: '5%',
+                pinnable: true,
+                sortable: true,
+                enableCellEdit: false
+            }, {
+                field: 'planname',
+                displayName: '任务名',
+                pinnable: true,
+                sortable: true,
+                enableCellEdit: true
+            }, {
+                field: 'people',
+                displayName: '负责人',
+                pinnable: true,
+                sortable: true,
+                enableCellEdit: true,
+                width: '10%'
+            }, {
+                field: 'Sort_name',
+                displayName: '类别',
+                pinnable: true,
+                sortable: true,
+                enableCellEdit: false,
+                width: '8%'
+            }, {
+                field: 'Sort_id',
+                displayName: '类别id',
+                visible: false //隐藏列，方便后面修改数据
+            }, {
+                field: 'costs',
+                displayName: '成本',
+                enableCellEdit: true,
+                width: '5%'
+            },{
+                field: 'plantime',
+                displayName: '大概需要的时间',
+                enableCellEdit: true,
+                cellFilter: 'date:\'yyyy-MM-dd\'', //过滤器，格式化日期
+                width: '10%'
+            },  {
+                field: 'plan_num',
+                displayName: '修改',
+                enableCellEdit: false,
+                sortable: false,
+                pinnable: false,
+                width: '8%',
+                // width: 120,
+                cellTemplate: '<div><a class="btn btn-xs btn-success feng-btn-modify" ng-click="updatePlan(row)"  data="{{row.getProperty(col.field)}}">确认修改</a></div>'
+            }, {
+                field: 'plan_num',
+                displayName: '删除',
+                enableCellEdit: false,
+                sortable: false,
+                pinnable: false,
+                // width: 120,
+                width: '5%',
+                cellTemplate: '<div><a class="btn btn-xs btn-danger feng-btn-delete" ng-click="deletePlan(row)" data="{{row.getProperty(col.field)}}">删除</a></div>'
+                //ng-click时间触发的时候传入row
+            }],
+            enablePaging: true,
+            showFooter: true,
+            showGroupPanel: true, //顶部的分组选项，可以拖拽列
+            // jqueryUITheme: true, //更换主题，需要jq-ui-theme文件
+            // selectedItems: $scope.mySelections,
+            // multiSelect: false, //多选
+            totalServerItems: 'totalServerItems',
+            // enableCellSelection: true, 
+            pagingOptions: $scope.pagingOptions,
+            filterOptions: $scope.filterOptions
+        };
+
+        $scope.updatePlan = function (row) {
+            //包装数据传递到后台
+            var obj = {
+                id: row.entity.plan_num,
+                planname: row.entity.planname,
+                people: row.entity.people,
+                typeId: row.entity.Sort_id, //类别id
+                typeName: row.entity.Sort_name, //类别名
+                costs: row.entity.costs,
+                //字符串转化为日期，日期转化为年月日格式
+                plantime: new Date(row.entity.plantime).toLocaleDateString(),
+            };
+            // console.log(obj);
+            $http.put('/seeAllPlan/' + obj.id, obj).success(function (data, status) {
+                if (status === 200) {
+                    alert(data.success);
+                }
+            });
+        };
+
+        $scope.deletePlan = function (row) {
+            $http.delete('/seeAllPlan/' + row.entity.plan_num).success(function (data, status) {
+                if (status === 200) {
+                    $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+                    alert(data.success);
+                }
+            });
+        };
+    }
+]);
 //添加管理员
 adminApp.controller('addAdmin', ['$scope', '$http',
     function($scope, $http) {
