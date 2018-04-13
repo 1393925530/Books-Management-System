@@ -1,0 +1,54 @@
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+--
+-- Host: localhost    Database: db_book
+-- ------------------------------------------------------
+-- Server version	5.7.20-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `t_admin`
+--
+
+DROP TABLE IF EXISTS `t_admin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_admin` (
+  `Admin_id` int(11) NOT NULL AUTO_INCREMENT,
+  `Admin_name` varchar(10) NOT NULL,
+  `Admin_password` varchar(32) NOT NULL,
+  PRIMARY KEY (`Admin_id`),
+  UNIQUE KEY `Admin_id_UNIQUE` (`Admin_id`),
+  UNIQUE KEY `Admin_name` (`Admin_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_admin`
+--
+
+LOCK TABLES `t_admin` WRITE;
+/*!40000 ALTER TABLE `t_admin` DISABLE KEYS */;
+INSERT INTO `t_admin` VALUES (8,'hwf','c03223e4c2e74fdac0e5f7469073da26'),(9,'zsy','eb25d21e8a4d7dc52947b61ab26a2694'),(10,'admin','21232f297a57a5a743894a0e4a801fc3'),(11,'test','098f6bcd4621d373cade4e832627b4f6'),(12,'test2','ad0234829205b9033196ba818f7a872b'),(13,'test3','8ad8757baa8564dc136c1e07507f4a98'),(14,'test5','e3d704f3542b44a621ebed70dc0efe13'),(15,'test6','b04083e53e242626595e2b8ea327e525'),(16,'oo','e47ca7a09cf6781e29634502345930a7'),(17,'asd','7815696ecbf1c96e6894b779456d330e');
+/*!40000 ALTER TABLE `t_admin` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2018-04-13 21:19:13
