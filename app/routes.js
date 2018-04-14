@@ -111,6 +111,23 @@ module.exports = function(app) {
         AdminCtrl.addPlan(req, res);
     });
 
+    //添加器材申请信息
+    app.post('/addDevice', function (req, res) {
+        AdminCtrl.addDevice(req, res);
+    });
+    //器材申请信息
+    app.get('/seeAllDevice', function (req, res) {
+        AdminCtrl.seeAllDevice(req, res);
+    });
+    //接受类别数据的修改
+    app.put('/seeAllDevice/:id', function (req, res) {
+        AdminCtrl.updateDevice(req, res);
+    });
+    app.delete('/seeAllDevice/:id', function (req, res) {
+        AdminCtrl.deleteDevice(req, res);
+    });
+
+
     app.get('/seeAllPlan', function (req, res) {
         AdminCtrl.seeAllPlan(req, res);
     });

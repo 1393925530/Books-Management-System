@@ -26,7 +26,7 @@ CREATE TABLE `t_type` (
   `Sort_id` int(11) NOT NULL AUTO_INCREMENT,
   `Sort_name` varchar(20) NOT NULL,
   PRIMARY KEY (`Sort_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,7 +35,7 @@ CREATE TABLE `t_type` (
 
 LOCK TABLES `t_type` WRITE;
 /*!40000 ALTER TABLE `t_type` DISABLE KEYS */;
-INSERT INTO `t_type` VALUES (1,'JavaScript'),(2,'舰船研究'),(4,'Java'),(5,'数据库'),(8,'医学'),(11,'政治/军事'),(13,'科普'),(15,'任务'),(16,'新任务'),(17,'维修');
+INSERT INTO `t_type` VALUES (1,'JavaScript'),(2,'舰船研究'),(5,'数据库'),(8,'医学'),(11,'政治/军事'),(13,'科普'),(15,'任务'),(16,'新任务'),(17,'维修'),(18,'体育');
 /*!40000 ALTER TABLE `t_type` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-13 21:19:13
+-- Dump completed on 2018-04-14 14:05:27

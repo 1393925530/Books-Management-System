@@ -16,30 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `t_admin`
+-- Table structure for table `t_device`
 --
 
-DROP TABLE IF EXISTS `t_admin`;
+DROP TABLE IF EXISTS `t_device`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `t_admin` (
-  `Admin_id` int(11) NOT NULL AUTO_INCREMENT,
-  `Admin_name` varchar(10) NOT NULL,
-  `Admin_password` varchar(32) NOT NULL,
-  PRIMARY KEY (`Admin_id`),
-  UNIQUE KEY `Admin_id_UNIQUE` (`Admin_id`),
-  UNIQUE KEY `Admin_name` (`Admin_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+CREATE TABLE `t_device` (
+  `device_num` int(11) DEFAULT NULL,
+  `devicename` varchar(45) NOT NULL,
+  `people` varchar(45) NOT NULL,
+  `Sort_id` int(11) DEFAULT NULL,
+  `price` int(11) NOT NULL,
+  `devicetime` date NOT NULL,
+  PRIMARY KEY (`devicename`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `t_admin`
+-- Dumping data for table `t_device`
 --
 
-LOCK TABLES `t_admin` WRITE;
-/*!40000 ALTER TABLE `t_admin` DISABLE KEYS */;
-INSERT INTO `t_admin` VALUES (8,'hwf','c03223e4c2e74fdac0e5f7469073da26'),(9,'zsy','eb25d21e8a4d7dc52947b61ab26a2694'),(10,'admin','21232f297a57a5a743894a0e4a801fc3'),(11,'test','098f6bcd4621d373cade4e832627b4f6'),(12,'test2','ad0234829205b9033196ba818f7a872b'),(13,'test3','8ad8757baa8564dc136c1e07507f4a98'),(14,'test5','e3d704f3542b44a621ebed70dc0efe13'),(15,'test6','b04083e53e242626595e2b8ea327e525'),(16,'oo','e47ca7a09cf6781e29634502345930a7'),(17,'asd','7815696ecbf1c96e6894b779456d330e'),(18,'zzc','e10adc3949ba59abbe56e057f20f883e');
-/*!40000 ALTER TABLE `t_admin` ENABLE KEYS */;
+LOCK TABLES `t_device` WRITE;
+/*!40000 ALTER TABLE `t_device` DISABLE KEYS */;
+INSERT INTO `t_device` VALUES (NULL,'足球','小刚',18,0,'2018-04-13');
+/*!40000 ALTER TABLE `t_device` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

@@ -23,17 +23,17 @@ DROP TABLE IF EXISTS `t_student`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `t_student` (
-  `Student_num` varchar(15) NOT NULL,
+  `Student_num` varchar(15) DEFAULT NULL,
   `Student_name` varchar(10) NOT NULL,
   `Password` varchar(20) NOT NULL,
-  `Academy_id` varchar(10) NOT NULL,
-  `Class_id` varchar(10) NOT NULL,
+  `Academy_id` varchar(10) DEFAULT NULL,
+  `Class_id` varchar(10) DEFAULT NULL,
   `Sex` varchar(2) DEFAULT NULL,
   `Telephone` varchar(15) DEFAULT NULL,
   `Email` varchar(20) DEFAULT NULL,
-  `Lended_num` int(11) NOT NULL DEFAULT '0',
-  `Create_date` date NOT NULL,
-  PRIMARY KEY (`Student_num`)
+  `Lended_num` int(11) DEFAULT '0',
+  `Create_date` date DEFAULT NULL,
+  PRIMARY KEY (`Student_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -43,6 +43,7 @@ CREATE TABLE `t_student` (
 
 LOCK TABLES `t_student` WRITE;
 /*!40000 ALTER TABLE `t_student` DISABLE KEYS */;
+INSERT INTO `t_student` VALUES (NULL,'zzc','123456',NULL,NULL,NULL,NULL,NULL,0,NULL);
 /*!40000 ALTER TABLE `t_student` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-13 21:19:13
+-- Dump completed on 2018-04-14 14:05:28

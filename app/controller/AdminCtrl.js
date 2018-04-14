@@ -3,6 +3,7 @@ var config = require('./config.js'),
     PlanDao = require('../dao/PlanDao.js'),
     BookDao = require('../dao/BookDao.js'),
     UserDao = require("../dao/UserDao.js"),
+    DeviceDao = require("../dao/DeviceDao.js"),
     md5 = require('md5');
 
 
@@ -156,6 +157,55 @@ exports.deletePlan = function (req, res) {
             success: '删除任务成功'
         });;
         console.log("删除任务成功");
+    });
+};
+
+exports.addDevice = function (req, res) {
+    //封装obj
+    var obj = {
+        devicename: req.body.devicename,
+        people: req.body.people,
+        typeId: req.body.typeId, //连接类别的外键
+        price: req.body.price,
+        devicetime: req.body.devicetime,
+    };
+    // console.log(obj);
+    // 调用DAO层接口
+    DeviceDao.insert(obj, function () {
+        console.warn("添加器材申请信息成功");
+        //返回给客户端200成功插入反馈
+        res.status(200).json({
+            success: '添加器材申请信息成功'
+        });
+    });
+};
+exports.seeAllDevice = function (req, res) {
+    DeviceDao.selectAll(function (rows) {
+        res.status(200).json(rows);
+    });
+};
+
+//修改书籍
+exports.updateDevice = function (req, res) {
+    var obj = req.body;
+    console.log(obj);
+    DeviceDao.modify(obj, function () {
+        res.status(200).json({
+            success: '修改器材申请信息成功'
+        });
+        console.log("修改器材申请信息成功");
+    });
+};
+
+//删除书籍
+exports.deleteDevice = function (req, res) {
+    //接受url传递的删除类别的id值
+    var id = req.params.id;
+    DeviceDao.deleteOne(id, function () {
+        res.status(200).json({
+            success: '删除器材申请信息成功'
+        });;
+        console.log("删除器材申请信息成功");
     });
 };
 

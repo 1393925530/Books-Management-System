@@ -32,7 +32,16 @@ exports.plan = {
     typeId: 0, //外键
     costs:'',
     plantime:Date,
+};
+exports.device = {
+    id: 0,
+    devicename: '',
+    people: '',
+    typeId: 0, //外键
+    price: '',
+   devicetime: Date,
 }
+
 
 exports.book = {
     id: 0,
