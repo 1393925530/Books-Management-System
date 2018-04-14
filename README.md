@@ -4,7 +4,8 @@ TQ-management-system
 - *AngularJS用到了*:ng-grid,ui-router,ng-file-upload等模块
 - *ExpressJS用到了*:body-parser,cookie-parser,cookie-session,ejs,express-session,MD5加密等模块
 - from https://github.com/ManfredHu    
-2018-04-13增加添加任务功能
+2018-04-13增加添加任务功能    
+2018-04-14修复了一些不能修复的bug..
 
 
 ## 运行
