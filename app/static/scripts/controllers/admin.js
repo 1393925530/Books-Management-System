@@ -432,7 +432,7 @@ adminApp.controller('seeAllBook', ['$scope', '$http',
                 visible: false //隐藏列，方便后面修改数据
             }, {
                 field: 'Price',
-                displayName: '价格/成本',
+                displayName: '价格',
                 enableCellEdit: true,
                 width: '5%'
             }, {
@@ -608,14 +608,14 @@ adminApp.controller('seeAllPlan', ['$scope', '$http',
             enableCellEdit: true, //双击修改，单击选中
             enablePinning: true, //列固定
             enableColumnResize: true, //可以更改列宽度
-            columnDefs: [{
+            columnDefs: [/*{
                 field: 'plan_num',
                 displayName: 'id',
                 width: '5%',
                 pinnable: true,
                 sortable: true,
                 enableCellEdit: false
-            }, {
+            },*/ {
                 field: 'planname',
                 displayName: '任务名',
                 pinnable: true,
@@ -646,7 +646,7 @@ adminApp.controller('seeAllPlan', ['$scope', '$http',
                 width: '5%'
             },{
                 field: 'plantime',
-                displayName: '大概需要的时间',
+                displayName: '完成时间',
                 enableCellEdit: true,
                 cellFilter: 'date:\'yyyy-MM-dd\'', //过滤器，格式化日期
                 width: '10%'
