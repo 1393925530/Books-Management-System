@@ -33,6 +33,8 @@ app
 	├──BookDao.js 书籍的Dao封装
 	├──BookTypeDao.js 书籍类别的Dao封装
 	├──UserDao.js 用户的Dao封装
+	├──DeviceDao.js 器材申请Dao封装
+	├──PlanDao.js 添加计划Dao封装
 ├──db	封装的数据库连接池部分
 	├──connection.js 数据库连接池封装
 	├──DBconfig.js MySQL数据库配置
