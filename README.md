@@ -1,5 +1,5 @@
 TQ-management-system
-使用MySQL+ExpressJS+AngularJS+NodeJS尝试开发的图书管理系统，开发前端后台模块，后台用ExpressJS和NodeJS搭建服务器，前端用AngularJS，样式用的Bootstrap。自己封装了数据库连接池的接口，利用Java项目MVC的思想组织后台，用Ajax传递前后台数据。
+使用MySQL+ExpressJS+AngularJS+NodeJS尝试开发TQ综合保障的管理系统，开发前端后台模块，后台用ExpressJS和NodeJS搭建服务器，前端用AngularJS，样式用的Bootstrap。自己封装了数据库连接池的接口，利用Java项目MVC的思想组织后台，用Ajax传递前后台数据。
 
 - *AngularJS用到了*:ng-grid,ui-router,ng-file-upload等模块
 - *ExpressJS用到了*:body-parser,cookie-parser,cookie-session,ejs,express-session,MD5加密等模块
